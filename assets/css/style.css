@@ -235,6 +235,7 @@ nav a:hover {
 }
 
 .logo h1 {
+    position: relative;
     font-size: clamp(5rem, 13vw, 13rem);
     color: #fff;
     letter-spacing: 25px;
@@ -245,6 +246,20 @@ nav a:hover {
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.5), 0 0 60px rgba(0, 255, 255, 0.3);
 
     opacity: 0;
+}
+
+.logo::before {
+    content: "NOVA";
+    position: absolute;
+    inset: 0;
+    font-size: clamp(5rem, 13vw, 13rem);
+    color: #fff;
+    letter-spacing: 25px;
+    text-transform: uppercase;
+    z-index: 4;
+    animation: fadeLogo 8s linear infinite;
+    filter: blur(0px);
+    pointer-events: none;
 }
 
 @keyframes reveal {
@@ -262,12 +277,25 @@ nav a:hover {
 }
 
 @keyframes rotate3d {
-    0% {
+    0%,
+    100% {
         transform: rotateY(0deg);
     }
 
+    50% {
+        transform: rotateY(90deg);
+    }
+}
+
+@keyframes fadeLogo {
+    0%,
     100% {
-        transform: rotateY(360deg);
+        opacity: 0.03;
+        filter: blur(0px);
+    }
+    50% {
+        opacity: 0.1;
+        filter: blur(20px);
     }
 }
 
